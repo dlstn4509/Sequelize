@@ -32,6 +32,8 @@ Object.keys(db).forEach(modelName => {
     db[modelName].associate(db);
   }
 });
+// console.log(db) => { board: board, User: User }
+
 
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;

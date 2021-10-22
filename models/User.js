@@ -1,6 +1,6 @@
 module.exports = (sequelize, DataType) => {
-  // define('객체명', 객체속성, 객체옵션)
-  const Users = sequelize.define('Users', {
+  // define(객체명, 객체속성, 객체옵션)
+  const User = sequelize.define('User', {
     id: {
       type: DataType.INTEGER(10).UNSIGNED,
       primaryKey: true,
@@ -30,9 +30,21 @@ module.exports = (sequelize, DataType) => {
   }, {
     charset: 'utf8',
     collate: 'utf8_general_ci',
-    tableName: 'users',
-    timestamps: true,
-    paranoid: true,
+    tableName: 'user',
+    timestamps: true,  // createdAt, updatedAt
+    paranoid: true,    // deletedAt - 실제 delete를 시키지 않고 삭제일만 등록
   });
-  return Users;
+
+  User.associate = (models) => {
+    User.hasMany(models.Board, { 
+      foreignKey: {
+        name: 'user_id',
+        allowNull: false,
+      }, 
+      sourceKey: 'id', 
+      onDelete: 'CASCADE' 
+    })
+  }
+
+  return User;
 };

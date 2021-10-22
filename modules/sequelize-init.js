@@ -1,4 +1,4 @@
-module.exports = (sequelize, force = 'false') => {
+module.exports = (sequelize, force = false) => {
   sequelize
     .sync({ force }) // 실제DB랑 연동시키는것
     .then(() => {'Sequelize Start!'})
