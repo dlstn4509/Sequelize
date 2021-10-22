@@ -1,3 +1,6 @@
+.env.dev
+.emv.prod
+
 # Logs
 logs
 *.log
