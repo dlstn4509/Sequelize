@@ -14,18 +14,33 @@ if (config.use_env_variable) {
 } else {
   sequelize = new Sequelize(config.database, config.username, config.password, config);
 }
-
-fs
+console.log('------------------------------------------')
+console.log(fs
   .readdirSync(__dirname) // [ 'index.js', 'Users.js' ]
   .filter(file => {
     return (file.indexOf('.') !== 0) && (file !== basename) && (file.slice(-3) === '.js');
     // basename = index.js
   })
-  .forEach(file => {
-    const model = require(path.join(__dirname, file))(sequelize, Sequelize.DataTypes);
-    // __dirname = C:\Users\insu\Desktop\코드마스터\sequelize__\models
-    db[model.name] = model;
-  });
+)
+console.log('------------------------------------------')
+
+fs
+.readdirSync(__dirname) // [ 'index.js', 'Users.js' ]
+.filter(file => {
+  return (file.indexOf('.') !== 0) && (file !== basename) && (file.slice(-3) === '.js');
+  // basename = index.js
+})
+.forEach(file => {
+  const model = require(path.join(__dirname, file))(sequelize, Sequelize.DataTypes);
+  // __dirname = C:\Users\insu\Desktop\코드마스터\sequelize__\models
+  // file = [ 'Board.js', 'User.js' ]
+  // sequelize = new Sequelize(config.database, config.username, config.password, config);
+  db[model.name] = model;
+});
+console.log('------------------------------------------')
+console.log(db)
+console.log('------------------------------------------')
+
 
 Object.keys(db).forEach(modelName => {
   if (db[modelName].associate) {
