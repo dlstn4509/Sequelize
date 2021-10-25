@@ -14,15 +14,6 @@ if (config.use_env_variable) {
 } else {
   sequelize = new Sequelize(config.database, config.username, config.password, config);
 }
-console.log('------------------------------------------')
-console.log(fs
-  .readdirSync(__dirname) // [ 'index.js', 'Users.js' ]
-  .filter(file => {
-    return (file.indexOf('.') !== 0) && (file !== basename) && (file.slice(-3) === '.js');
-    // basename = index.js
-  })
-)
-console.log('------------------------------------------')
 
 fs
 .readdirSync(__dirname) // [ 'index.js', 'Users.js' ]
@@ -37,9 +28,6 @@ fs
   // sequelize = new Sequelize(config.database, config.username, config.password, config);
   db[model.name] = model;
 });
-console.log('------------------------------------------')
-console.log(db)
-console.log('------------------------------------------')
 
 
 Object.keys(db).forEach(modelName => {
